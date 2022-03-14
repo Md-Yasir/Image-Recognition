@@ -2,7 +2,9 @@ package com.rabbitmq.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+
 import org.springframework.stereotype.Service;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -32,10 +34,13 @@ public class RecieveService {
 		DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 			fileId = new String(delivery.getBody(), StandardCharsets.UTF_8);
 			System.out.println("Received : '" + fileId + "'");
+			detectSafeSearch(fileId);
 		};
 		System.out.println(channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { }));
-		return detectSafeSearch(fileId);
+		return "sent";
 	}
+	
+	
 
 
 //
@@ -47,7 +52,7 @@ public class RecieveService {
 	
 //		InputStream imgBytes = driverservice.getFile(fileId);
 	
-		String finalResult = null;
+//		String finalResult = null;
 //		List<AnnotateImageRequest> requests = new ArrayList<>();
 //
 //		X ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));

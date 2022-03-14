@@ -1,16 +1,12 @@
 package com.rabbitmq.service;
 
+import java.nio.charset.StandardCharsets;
+
+import org.springframework.stereotype.Service;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-
-import antlr.collections.List;
-
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class SendService {
@@ -20,9 +16,9 @@ public class SendService {
 //	@Autowired
 //	private DriverService driverService;
 //	
-//	private String fileId = 1;
+//	private String fileId = null;
 //	
-//	public String addImage() {
+//	public String addImage(file, filepath) {
 //		
 //		File[] files;
 //		for (File file : files) {
@@ -32,7 +28,7 @@ public class SendService {
 //		
 //		return "done";
 //	}
-
+	
     public String Send(String fileId) throws Exception {
     	   	
         ConnectionFactory factory = new ConnectionFactory();
